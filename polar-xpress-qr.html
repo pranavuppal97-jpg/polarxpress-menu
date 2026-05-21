@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polar Xpress — QR Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Bricolage+Grotesque:wght@500;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: #c4d9ef;
+            background-image:
+                radial-gradient(ellipse 65% 45% at 18% 18%, rgba(255,255,255,0.58) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 65% at 78% 12%, rgba(255,255,255,0.45) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 55% at 52% 82%, rgba(255,255,255,0.38) 0%, transparent 62%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .card {
+            background: linear-gradient(170deg, #1c52d4 0%, #0f34a8 100%);
+            border-radius: 28px;
+            padding: 40px 36px 36px;
+            text-align: center;
+            max-width: 360px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(15, 40, 120, 0.35);
+        }
+
+        .logo {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 52px;
+            color: #fff;
+            letter-spacing: 5px;
+            line-height: 0.88;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.25);
+        }
+
+        .logo-x {
+            display: block;
+            font-size: 44px;
+            letter-spacing: 9px;
+        }
+
+        .estd {
+            color: rgba(255,255,255,0.55);
+            font-size: 10px;
+            letter-spacing: 7px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 22px 0 20px;
+        }
+
+        .divider-dot {
+            width: 10px;
+            height: 10px;
+            border: 2px solid #F5821F;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 2px;
+            background: #F5821F;
+            border-radius: 2px;
+        }
+
+        .divider-text {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            color: #F5821F;
+            letter-spacing: 2.5px;
+            white-space: nowrap;
+        }
+
+        .qr-wrap {
+            background: #fff;
+            border-radius: 18px;
+            padding: 18px;
+            display: inline-block;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        #qrcode img, #qrcode canvas {
+            display: block;
+            width: 200px !important;
+            height: 200px !important;
+        }
+
+        .scan-label {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: 3px;
+            margin-top: 22px;
+        }
+
+        .scan-sub {
+            font-size: 12px;
+            color: rgba(255,255,255,0.65);
+            font-weight: 500;
+            margin-top: 5px;
+            letter-spacing: 0.3px;
+        }
+
+        .contact {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .contact-phone {
+            font-family: 'Courier Prime', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: #F5821F;
+        }
+
+        .contact-insta {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        .tax-note {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.75);
+            margin-top: 14px;
+            display: inline-block;
+            letter-spacing: 0.3px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .card { box-shadow: none; margin: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="logo">POLAR<span class="logo-x">XPRESS</span></div>
+    <div class="estd">E S T D &nbsp; 2 0 2 5</div>
+
+    <div class="divider">
+        <span class="divider-dot"></span>
+        <div class="divider-line"></div>
+        <span class="divider-text">SCAN MENU</span>
+        <div class="divider-line"></div>
+        <span class="divider-dot"></span>
+    </div>
+
+    <div class="qr-wrap">
+        <div id="qrcode"></div>
+    </div>
+
+    <div class="scan-label">SCAN TO ORDER</div>
+    <div class="scan-sub">Point your camera at the QR code to view our full menu</div>
+
+    <div class="contact">
+        <div class="contact-phone">+91 96196 97979</div>
+        <div class="contact-insta">@polarxpress.co</div>
+        <div class="tax-note">★ All prices inclusive of taxes ★</div>
+    </div>
+</div>
+
+<script>
+    new QRCode(document.getElementById("qrcode"), {
+        text: "https://pranavuppal97-jpg.github.io/polarxpress-menu/",
+        width: 200,
+        height: 200,
+        colorDark: "#0f2a6e",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+</script>
+
+</body>
+</html>

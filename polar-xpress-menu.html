@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polar Xpress — Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Fredoka:wght@500;600;700&family=Courier+Prime:wght@400;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue:   #1B4EC8;
+            --navy:   #0f2a6e;
+            --orange: #F5821F;
+            --ice:    #c4d9ef;
+            --text:   #18244e;
+            --muted:  #3d4e78;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        /* ── ICY BACKGROUND ── */
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            min-height: 100vh;
+            background-color: var(--ice);
+            background-image:
+                radial-gradient(ellipse 65% 45% at 18% 18%, rgba(255,255,255,0.58) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 65% at 78% 12%, rgba(255,255,255,0.45) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 55% at 52% 82%, rgba(255,255,255,0.38) 0%, transparent 62%),
+                radial-gradient(ellipse 42% 42% at 88% 68%, rgba(255,255,255,0.32) 0%, transparent 52%),
+                radial-gradient(ellipse 38% 38% at 8%  75%, rgba(255,255,255,0.28) 0%, transparent 48%);
+            color: var(--text);
+            padding-bottom: 50px;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: linear-gradient(170deg, #1c52d4 0%, #0f34a8 100%);
+            padding: 30px 20px 22px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 70% 35%, rgba(255,255,255,0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .logo {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 66px;
+            color: #fff;
+            letter-spacing: 5px;
+            line-height: 0.87;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.28);
+            position: relative;
+            z-index: 1;
+        }
+        .logo-x {
+            display: block;
+            font-size: 56px;
+            letter-spacing: 10px;
+        }
+        .estd {
+            color: rgba(255,255,255,0.62);
+            font-size: 11px;
+            letter-spacing: 8px;
+            font-weight: 700;
+            margin-top: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── STICKY NAV ── */
+        .nav {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.14);
+        }
+        .nav::-webkit-scrollbar { display: none; }
+        .nav-btn {
+            flex: 0 0 auto;
+            padding: 13px 14px;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 12px;
+            color: #888;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color .18s, border-color .18s;
+            letter-spacing: .3px;
+        }
+        .nav-btn.active, .nav-btn:hover {
+            color: var(--blue);
+            border-bottom-color: var(--orange);
+        }
+
+        /* ── SECTION ── */
+        .section {
+            padding: 28px 16px 6px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION HEADER  ○—— TITLE ——○ ── */
+        .sec-head {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+        .sec-dot {
+            width: 13px;
+            height: 13px;
+            border: 2.5px solid var(--orange);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sec-line {
+            flex: 1;
+            height: 2.5px;
+            background: var(--orange);
+            border-radius: 2px;
+        }
+        .sec-title {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0,0,60,0.35), 0 0 20px rgba(255,255,255,0.15);
+            white-space: nowrap;
+        }
+        /* Sub-head for secondary sections (Dip Pics) */
+        .sec-head-sm .sec-title { font-size: 22px; }
+
+        .sec-note {
+            text-align: center;
+            font-size: 11.5px;
+            color: var(--orange);
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: -8px 0 14px;
+        }
+
+        /* ── ITEM ── */
+        .item {
+            background: rgba(255,255,255,0.48);
+            border-radius: 13px;
+            padding: 11px 14px 10px;
+            margin-bottom: 9px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 2px 10px rgba(27,78,200,0.08);
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .item-name {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text);
+            flex: 1;
+            line-height: 1.25;
+        }
+        .jain {
+            color: var(--orange);
+            font-weight: 900;
+            font-size: 13px;
+        }
+        .item-price {
+            font-family: 'Courier Prime', monospace;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .item-desc {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 12.5px;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 3px;
+            line-height: 1.42;
+        }
+
+        /* ── ADD-ONS ── */
+        .addons {
+            background: rgba(27,78,200,0.08);
+            border: 1.5px solid rgba(27,78,200,0.18);
+            border-radius: 12px;
+            padding: 10px 14px 12px;
+            margin: 4px 0 20px;
+        }
+        .addons-head {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 9px;
+        }
+        .addons-head .sec-line { opacity: 0.35; }
+        .addons-title {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--orange);
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+        .addon-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            color: var(--text);
+        }
+        .addon-row:last-child { border-bottom: none; }
+        .addon-price { color: var(--blue); font-weight: 900; }
+
+        /* ── MEAL BOX CARDS ── */
+        .meal-card {
+            background: linear-gradient(130deg, #f5821f 0%, #ff9535 100%);
+            border-radius: 14px;
+            padding: 13px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 18px rgba(245,130,31,0.38);
+        }
+        .meal-card .item-name { color: #fff; font-size: 16px; }
+        .meal-card .item-desc { color: rgba(255,255,255,0.88); }
+        .meal-card .item-price { color: #fff; font-size: 22px; font-family: 'Courier Prime', monospace; letter-spacing: 1px; }
+
+        /* ── SPECIAL BANNERS ── */
+        .banner-orange {
+            background: linear-gradient(130deg, #f5821f 0%, #ff9535 100%);
+            border-radius: 14px;
+            padding: 15px 18px;
+            text-align: center;
+            margin: 6px 0 20px;
+            box-shadow: 0 5px 18px rgba(245,130,31,0.35);
+        }
+        .banner-title {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        .banner-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.92);
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .banner-pill {
+            border-radius: 50px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: linear-gradient(170deg, #1c52d4 0%, #0f34a8 100%);
+            padding: 28px 20px 36px;
+            text-align: center;
+            color: #fff;
+            margin-top: 28px;
+        }
+        .footer-logo {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-weight: 900;
+            font-size: 34px;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+        }
+        .footer-addr {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.72);
+            font-weight: 600;
+            margin: 12px 0 6px;
+            line-height: 1.55;
+        }
+        .footer-phone {
+            font-family: 'Courier Prime', monospace;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--orange);
+            margin: 4px 0 3px;
+        }
+        .footer-social {
+            font-size: 13px;
+            color: rgba(255,255,255,0.72);
+            font-weight: 700;
+        }
+        .footer-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.14);
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 14px;
+            letter-spacing: .5px;
+        }
+        .footer-jain {
+            font-size: 11.5px;
+            color: rgba(255,255,255,0.55);
+            margin-top: 8px;
+        }
+
+        /* ── SCROLL-TO-TOP ── */
+        #upBtn {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+    <div class="logo">POLAR<span class="logo-x">XPRESS</span></div>
+    <div class="estd">E S T D &nbsp; 2 0 2 5</div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" id="nav">
+    <button class="nav-btn active" onclick="go('slurrrps')">🥤 Slurrrps</button>
+    <button class="nav-btn"        onclick="go('coco')">🍫 Coco Loco</button>
+    <button class="nav-btn"        onclick="go('ufo')">🛸 UFO Bombs</button>
+    <button class="nav-btn"        onclick="go('pizza')">🍕 Pizza Pops</button>
+    <button class="nav-btn"        onclick="go('fries')">🍟 Polar Fries</button>
+    <button class="nav-btn"        onclick="go('dips')">🫙 Dip Pics</button>
+    <button class="nav-btn"        onclick="go('mealbox')">📦 Meal Box</button>
+</nav>
+
+
+<!-- ══════════ SLURRRPS ══════════ -->
+<section class="section" id="slurrrps">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">SLURRRPS</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Spicy Passion</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">Refreshing Passion Fruit with zingy Tajin and a kick of chilli</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Mixed Berry</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">A vibrant blend of juicy mixed berries in an ultra-frosty frozen slurrrp</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Rasberry Lemonade</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">A tangy lemonade elevated with popping raspberry boba</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Cosmic Lemonade</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">A magical, colour-changing lemonade that's as fun to watch as it is to sip</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Cola Lemonade</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">The ultimate fizzy mashup — classic cola meets bright, zesty lemonade</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Mango Frost</span>
+            <span class="item-price">₹175</span>
+        </div>
+        <div class="item-desc">Chilled to perfection, bursting with the sun-kissed sweetness of ripe mango in every icy sip</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Artic Cold Brew</span>
+            <span class="item-price">₹210</span>
+        </div>
+        <div class="item-desc">Our signature take on Vietnamese Cold Coffee — Smooth, Bold &amp; Icy</div>
+    </div>
+
+    <div class="banner-orange">
+        <div class="banner-title">FLAVOUR OF THE WEEK</div>
+        <div class="banner-desc">Every week, a new chill — discover this week's frozen obsession.</div>
+    </div>
+
+    <div class="addons">
+        <div class="addons-head">
+            <span class="sec-dot" style="border-color:var(--orange)"></span>
+            <div class="sec-line" style="opacity:.35"></div>
+            <span class="addons-title">ADD – ONS</span>
+            <div class="sec-line" style="opacity:.35"></div>
+            <span class="sec-dot" style="border-color:var(--orange)"></span>
+        </div>
+        <div class="addon-row"><span>Lemon Juice</span><span class="addon-price">₹15</span></div>
+        <div class="addon-row"><span>Extra Tajin</span><span class="addon-price">₹25</span></div>
+        <div class="addon-row"><span>Popping Candy</span><span class="addon-price">₹25</span></div>
+        <div class="addon-row"><span>Whipped Cream</span><span class="addon-price">₹35</span></div>
+        <div class="addon-row"><span>Raspberry Boba</span><span class="addon-price">₹35</span></div>
+        <div class="addon-row"><span>Vanilla Ice Cream</span><span class="addon-price">₹50</span></div>
+    </div>
+</section>
+
+
+<!-- ══════════ COCO LOCO ══════════ -->
+<section class="section" id="coco">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">COCO LOCO</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Arctic CoCo Loco</span>
+            <span class="item-price">₹210</span>
+        </div>
+        <div class="item-desc">Thick, Rich Chocolate Shake. Smooth and Indulgent</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Cloudy CoCo Loco</span>
+            <span class="item-price">₹245</span>
+        </div>
+        <div class="item-desc">Thick, Rich Chocolate Shake topped with a generous swirl of whipped cream</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Nutty CoCo Loco</span>
+            <span class="item-price">₹260</span>
+        </div>
+        <div class="item-desc">Rich Chocolate Shake blended with crunchy, Slow-Roasted Cashews</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Creamy Coco Loco</span>
+            <span class="item-price">₹260</span>
+        </div>
+        <div class="item-desc">A double-threat of Thick Chocolate Shake and a scoop of Velvety Vanilla Ice Cream</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">French Coco Loco</span>
+            <span class="item-price">₹260</span>
+        </div>
+        <div class="item-desc">The ultimate indulgence — Thick Chocolate Shake topped with Buttery Mini Croissants</div>
+    </div>
+
+    <div class="addons">
+        <div class="addons-head">
+            <span class="sec-dot" style="border-color:var(--orange)"></span>
+            <div class="sec-line" style="opacity:.35"></div>
+            <span class="addons-title">ADD – ONS</span>
+            <div class="sec-line" style="opacity:.35"></div>
+            <span class="sec-dot" style="border-color:var(--orange)"></span>
+        </div>
+        <div class="addon-row"><span>Whipped Cream</span><span class="addon-price">₹35</span></div>
+        <div class="addon-row"><span>Buttery Mini Croissants</span><span class="addon-price">₹50</span></div>
+        <div class="addon-row"><span>Vanilla Ice Cream</span><span class="addon-price">₹50</span></div>
+        <div class="addon-row"><span>Butter Roasted Cashew</span><span class="addon-price">₹50</span></div>
+    </div>
+</section>
+
+
+<!-- ══════════ UFO BOMBS ══════════ -->
+<section class="section" id="ufo">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">UFO BOMBS</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Chilli Cheese Bomb &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹250</span>
+        </div>
+        <div class="item-desc">A golden bite with a molten Chilli-Cheese core</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Truffle Bomb</span>
+            <span class="item-price">₹275</span>
+        </div>
+        <div class="item-desc">A gourmet melting Truffle-Cheese Mushroom sandwich</div>
+    </div>
+</section>
+
+
+<!-- ══════════ PIZZA POPS ══════════ -->
+<section class="section" id="pizza">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">PIZZA POPS</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+    <p class="sec-note">Minimum Box of 2 &nbsp;·&nbsp; Price per piece</p>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">OG Margherita &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹60</span>
+        </div>
+        <div class="item-desc">Soft, cheesy, and baked to perfection</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Indie Paneer</span>
+            <span class="item-price">₹60</span>
+        </div>
+        <div class="item-desc">A desi twist — soft paneer, bold spices, and irresistible cheesy goodness</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Hot Pepper &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹60</span>
+        </div>
+        <div class="item-desc">Fresh, crunchy bell peppers layered over gooey cheese for a bold, colorful bite</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Truffle Shroom</span>
+            <span class="item-price">₹85</span>
+        </div>
+        <div class="item-desc">Earthy, indulgent, and luxe — truffle-infused mushrooms with rich, gooey cheese</div>
+    </div>
+
+    <div class="banner-orange banner-pill" style="margin-top:10px">
+        <div class="banner-title" style="letter-spacing:4px">MAKE YOUR OWN BOX</div>
+    </div>
+</section>
+
+
+<!-- ══════════ POLAR FRIES ══════════ -->
+<section class="section" id="fries">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">POLAR FRIES</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Shaka Fries &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹185</span>
+        </div>
+        <div class="item-desc">Classic golden fries tossed in our top-secret Polar Dust</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Peri Peri Fries &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">Crispy golden fries tossed in our signature Peri Peri seasoning</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Za'atar Fries</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">Fries tossed in butter garlic sauce, finished with aromatic Za'atar</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Stir' Fries &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">Crunchy fries seasoned with bold, wok-style stir-fry flavours</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Chill-eesy Fries &nbsp;<span class="jain">(J)</span></span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">Fries drenched in a cheesy paprika sauce</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Wasabi Fries</span>
+            <span class="item-price">₹160</span>
+        </div>
+        <div class="item-desc">Classic fries with a cool wasabi kick</div>
+    </div>
+
+    <div class="addons">
+        <div class="addons-head">
+            <span class="sec-dot" style="border-color:var(--orange)"></span>
+            <div class="sec-line" style="opacity:.35"></div>
+            <span class="addons-title">ADD – ONS</span>
+            <div class="sec-line" style="opacity:.35"></div>
+            <span class="sec-dot" style="border-color:var(--orange)"></span>
+        </div>
+        <div class="addon-row"><span>Extra Grated Cheese</span><span class="addon-price">₹30</span></div>
+        <div class="addon-row"><span>Extra Chill-eesy Sauce</span><span class="addon-price">₹50</span></div>
+        <div class="addon-row"><span>Peri-Peri Powder</span><span class="addon-price">₹50</span></div>
+    </div>
+</section>
+
+
+<!-- ══════════ DIP PICS ══════════ -->
+<section class="section" id="dips">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">DIP PICS</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Cheesy Paprika Melt</span>
+            <span class="item-price">₹50</span>
+        </div>
+        <div class="item-desc">Creamy melted cheese with a smoky paprika kick</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Wasabi Mayo</span>
+            <span class="item-price">₹50</span>
+        </div>
+        <div class="item-desc">Smooth, creamy mayonnaise with a subtle wasabi heat</div>
+    </div>
+
+    <div class="item">
+        <div class="item-row">
+            <span class="item-name">Truffle Chilli Ketchup</span>
+            <span class="item-price">₹75</span>
+        </div>
+        <div class="item-desc">Rich tomato ketchup elevated with truffle and a gentle chilli bite</div>
+    </div>
+</section>
+
+
+<!-- ══════════ MEAL BOX ══════════ -->
+<section class="section" id="mealbox">
+    <div class="sec-head">
+        <span class="sec-dot"></span><div class="sec-line"></div>
+        <h2 class="sec-title">MEAL BOX</h2>
+        <div class="sec-line"></div><span class="sec-dot"></span>
+    </div>
+
+    <div class="meal-card">
+        <div>
+            <div class="item-name">Box 1</div>
+            <div class="item-desc">2 Pizza Pops + 1 Slurrrp + 1 Fries</div>
+        </div>
+        <div class="item-price">₹350</div>
+    </div>
+
+    <div class="meal-card">
+        <div>
+            <div class="item-name">Box 2</div>
+            <div class="item-desc">1 UFO Bomb + 1 Dip + 1 Slurrp + 1 Fries</div>
+        </div>
+        <div class="item-price">₹500</div>
+    </div>
+
+    <div class="meal-card">
+        <div>
+            <div class="item-name">Box 3</div>
+            <div class="item-desc">4 Pizza Pops + 2 Slurrrps + 1 Fries</div>
+        </div>
+        <div class="item-price">₹600</div>
+    </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+    <div class="footer-logo">POLAR XPRESS</div>
+    <div class="footer-addr">
+        Shop No. 9, Mehta Bhavan<br>
+        Hinduja College Lane, Charni Rd.
+    </div>
+    <div class="footer-phone">+91 96196 97979</div>
+    <div class="footer-social">@polarxpress.co</div>
+    <div class="footer-tag">★ &nbsp;All prices are inclusive of taxes&nbsp; ★</div>
+    <div class="footer-jain">(J) Jain Options Available</div>
+</footer>
+
+<button id="upBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+    const SECTIONS = ['slurrrps','coco','ufo','pizza','fries','dips','mealbox'];
+    const btns = document.querySelectorAll('.nav-btn');
+    const navEl = document.getElementById('nav');
+
+    function go(id) {
+        const el = document.getElementById(id);
+        const top = el.getBoundingClientRect().top + window.scrollY - navEl.offsetHeight - 8;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+        const mid = window.scrollY + navEl.offsetHeight + 70;
+        let cur = SECTIONS[0];
+        SECTIONS.forEach(id => {
+            if (document.getElementById(id).offsetTop <= mid) cur = id;
+        });
+        btns.forEach((b, i) => b.classList.toggle('active', SECTIONS[i] === cur));
+        btns[SECTIONS.indexOf(cur)]?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+
+        const up = document.getElementById('upBtn');
+        up.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    }, { passive: true });
+</script>
+</body>
+</html>
